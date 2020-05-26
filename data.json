@@ -1,0 +1,49 @@
+{
+  "monitored_elements": [
+    {
+      "name": "Reuzel Matte Clay matowa wodna pomada - pr\u00f3bka 3g",
+      "link": "https://allegro.pl/oferta/reuzel-matte-clay-matowa-wodna-pomada-probka-3g-8762003786?reco_id=4822e2ce-951c-11ea-9896-b02628c81c90&sid=041047f9c36843e364ecb91b45c568a2755aa386fe7e14ee7421a14291fbf951",
+      "is_done": false,
+      "login": "ooogyano@gmail.com",
+      "password": "Python123",
+      "email_to_send": "oogyano@gmail.com",
+      "price": 2.0,
+      "xpath": "/html/body/div[2]/div[4]/div/div/div[2]/div/div/div/div/div/div[1]/div[2]/div[5]/div/div[1]",
+      "time": 10,
+      "is_on": false,
+      "is_monitoring": true
+    },
+    {
+      "name": "Zestaw Prysznicowy Natryskowy z wylewk\u0105 LUCAS REA",
+      "link": "https://allegro.pl/oferta/zestaw-prysznicowy-natryskowy-z-wylewka-lucas-rea-8122056270?bi_s=landing_internal&bi_c=sypialnia_2020&bi_m=offer_tiles&",
+      "is_done": false,
+      "login": "ooogyano@gmail.com",
+      "password": "Python123",
+      "email_to_send": "oogyano@gmail.com",
+      "price": 300.0,
+      "xpath": "/html/body/div[2]/div[4]/div/div/div[2]/div/div/div/div/div/div[1]/div[2]/div[5]/div[2]/div[1]",
+      "time": 8,
+      "is_on": true,
+      "is_monitoring": true
+    },
+    {
+      "name": "YES Naszyjnik poz\u0142acany z zawieszk\u0105 serce",
+      "link": "https://allegro.pl/oferta/yes-naszyjnik-pozlacany-z-zawieszka-serce-9260691837?bi_m=mpage&",
+      "is_done": false,
+      "login": "ooogyano@gmail.com",
+      "password": "Python123",
+      "email_to_send": "ooogyano@gmail.com",
+      "price": 17.0,
+      "xpath": "/html/body/div[2]/div[4]/div/div/div[2]/div/div/div/div/div/div[1]/div[2]/div[4]/div[2]/div",
+      "time": 3,
+      "is_on": true,
+      "is_monitoring": false
+    }
+  ],
+  "autofill": {
+    "time": 20,
+    "password": "Python123",
+    "login": "ooogyano@gmail.com",
+    "email_to_send": "yevhenii.oros@gmail.com"
+  }
+}
