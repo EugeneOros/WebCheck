@@ -12,7 +12,6 @@ def main(shared_dict):
     sys.exit(app.exec_())
 
 
-
 if __name__ == "__main__":
     with multiprocessing.Manager() as manager:
         shared_dict = manager.dict({'isTerminatedP2': False})
@@ -27,4 +26,3 @@ if __name__ == "__main__":
         #         print(shared_dict['isTerminatedP2'])
         #         p2.terminate()
         #         break
-

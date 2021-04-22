@@ -5,9 +5,7 @@ from selenium.common.exceptions import NoSuchElementException, WebDriverExceptio
 import read_write_data as data
 import email_send
 from multiprocessing.pool import ThreadPool
-import login
 import re
-import threading
 
 
 def check_changes(url, element):
@@ -17,11 +15,11 @@ def check_changes(url, element):
         element = '/html/body'
     try:
         driver.get(url)
-        mainPage = driver.find_element_by_xpath(element).text
-        actualPage = mainPage
-        while mainPage == actualPage:
+        main_page = driver.find_element_by_xpath(element).text
+        actual_page = main_page
+        while main_page == actual_page:
             driver.get(url)
-            actualPage = driver.find_element_by_xpath(element).text
+            actual_page = driver.find_element_by_xpath(element).text
             sleep(1)
         driver.get('https://www.google.com/')
         sleep(10)
@@ -34,7 +32,7 @@ def check_changes(url, element):
         driver.quit()
 
 
-def check_if_price_lower(element, _FINISHED):
+def check_if_price_lower(element, _finished):
     # login.allegro_login(element['login'], element['password'])
     allegro_login = element["login"]
     allegro_password = element["password"]
@@ -47,7 +45,8 @@ def check_if_price_lower(element, _FINISHED):
     # with this options driver will work in background
     driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(10)
-    url_login = 'https://allegro.pl/login/form?authorization_uri=https:%2F%2Fallegro.pl%2Fauth%2Foauth%2Fauthorize%3Fclient_id%3Dtb5SFf3cRxEyspDN%26redirect_uri%3Dhttps:%2F%2Fallegro.pl%2Flogin%2Fauth%26response_type%3Dcode%26state%3DhgnqyY&oauth=true'
+    url_login = 'https://allegro.pl/login/form?authorization_uri=https:%2F%2Fallegro.pl%2Fauth%2Foauth%2Fauthorize%3Fclient_id%3Dtb5SFf3cRxEyspDN' \
+                '%26redirect_uri%3Dhttps:%2F%2Fallegro.pl%2Flogin%2Fauth%26response_type%3Dcode%26state%3DhgnqyY&oauth=true '
     driver.get(url_login)
     driver.set_window_size(1100, 750)
     driver.find_element_by_xpath("//*[contains(text(), 'przejdź dalej')]").click()
@@ -55,19 +54,19 @@ def check_if_price_lower(element, _FINISHED):
     driver.find_element_by_id('password').send_keys(allegro_password)
     driver.find_element_by_id('login-button').click()
     print("zalogowałem się")
-    actualPrice = float(element['price'])
+    actual_price = float(element['price'])
     driver.get(element["link"])
     try:
-        while actualPrice >= float(element['price']):
+        while actual_price >= float(element['price']):
 
-            if _FINISHED[element["link"]]:
+            if _finished[element["link"]]:
                 break
 
             driver.get(element["link"])
-            priceText = re.split(' ', driver.find_element_by_xpath(element['xpath']).text)
-            priceInParts = re.split(',', priceText[0])
-            actualPrice = float(priceInParts[0]) + float(priceInParts[1]) / 100
-            print(priceText, "   ", priceInParts, "   ", actualPrice)
+            price_text = re.split(' ', driver.find_element_by_xpath(element['xpath']).text)
+            price_in_parts = re.split(',', price_text[0])
+            actual_price = float(price_in_parts[0]) + float(price_in_parts[1]) / 100
+            print(price_text, "   ", price_in_parts, "   ", actual_price)
             sleep(element["time"])
     except NoSuchElementException:
         print('Cant find element')
@@ -77,10 +76,10 @@ def check_if_price_lower(element, _FINISHED):
         print("Attribute not found")
     finally:
         print('My work is done')
-        if actualPrice < element["price"]:
+        if actual_price < element["price"]:
             if not element["is_monitoring"]:
                 driver.find_element_by_id('buy-now-button').click()
-            email_send.send_email(element["email_to_send"], element["link"], actualPrice)
+            email_send.send_email(element["email_to_send"], element["link"], actual_price)
         driver.quit()
 
 
